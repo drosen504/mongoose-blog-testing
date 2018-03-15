@@ -37,3 +37,33 @@ function generateBlogPostData() {
     created: faker.date.recent(),
   };
 }
+
+function tearDownDb() {
+  console.warn('Deleting database');
+  return mongoose.connection.dropDatabase();
+}
+
+describe('Blog Post API resource', function() {
+
+    before(function() {
+      return runServer(TEST_DATABASE_URL);
+    });
+  
+    beforeEach(function() {
+      return seedBlogPostData();
+    });
+  
+    afterEach(function() {
+      return tearDownDb();
+    });
+  
+    after(function() {
+      return closeServer();
+    });
+
+    describe('GET endpoint', function() {
+        it('should return all existing blog posts', function() {
+            let res;
+            return chai.request(app)
+        })
+    })
