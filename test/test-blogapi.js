@@ -175,7 +175,8 @@ describe('Blog Post API resource', function() {
         .findOne()
         .then(function(_post) {
           post = _post;
-          return chai.request(app).delete(`/posts/${post.id}`);
+          console.log('contents of post is ', post._id);
+          return chai.request(app).delete(`/posts/${post._id}`);
         })
         .then(function(_post) {
           expect(_post).to.be.null;
