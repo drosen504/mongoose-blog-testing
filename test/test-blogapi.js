@@ -53,7 +53,7 @@ function tearDownDb() {
 describe('Blog Post API resource', function() {
 
   before(function() {
-    return runServer(TEST_DATABASE_URL);
+    return runServer(TEST_DATABASE_URL, 8081);
   });
   
   beforeEach(function() {
