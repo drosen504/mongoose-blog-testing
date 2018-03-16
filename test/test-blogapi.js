@@ -91,20 +91,21 @@ describe('Blog Post API resource', function() {
         .then(function(res) {
           expect(res).to.have.status(200);
           expect(res).to.be.json;
-          expect(res.body.posts).to.be.a('array');
-          expect(res.body.posts).to.have.length.of.at.least(1);
+          expect(res.body).to.be.a('array');
+          expect(res.body).to.have.length.of.at.least(1);
 
-          res.body.posts.forEach(function(post) {
+          res.body.forEach(function(post) {
             expect(post).to.be.a('object');
             expect(post).to.include.keys('id', 'title', 'author', 'content');
           });
-          resPost = res.body.posts[0];
+          resPost = res.body[0];
           return BlogPost.findById(resPost.id);
         })
         .then(function(post) {
+          const authorName = post.author.firstName.concat(' ', post.author.lastName);
           expect(resPost.id).to.equal(post.id);
           expect(resPost.title).to.equal(post.title);
-          expect(resPost.author).to.equal(post.author);
+          expect(resPost.author).to.equal(authorName);
           expect(resPost.content).to.equal(post.content);
         });
     });
