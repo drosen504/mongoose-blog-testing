@@ -76,11 +76,12 @@ describe('Blog Post API resource', function() {
         .then(function(_res) {
           res = _res;
           expect(res).to.have.status(200);
-          expect(res.body.posts).to.have.length.of.at.least(1);
+          expect(res.body).to.have.length.of.at.least(1);
+          expect(res.body).to.be.a('array');
           return BlogPost.count();
         })
         .then(function(count) {
-          expect(res.body.posts).to.have.length.of(count);
+          expect(res.body).to.have.length.of(count);
         });
     });
     it('should return blog posts with the correct fields', function() {
