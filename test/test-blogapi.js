@@ -178,8 +178,8 @@ describe('Blog Post API resource', function() {
           console.log('contents of post is ', post._id);
           return chai.request(app).delete(`/posts/${post._id}`);
         })
-        .then(function(_post) {
-          expect(_post).to.be.null;
+        .then(function(res) {
+          expect(res).to.have.status(204);
         });
     });
   });
