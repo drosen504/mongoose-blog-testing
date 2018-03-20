@@ -180,6 +180,10 @@ describe('Blog Post API resource', function() {
         })
         .then(function(res) {
           expect(res).to.have.status(204);
+          return BlogPost.findById(post._id);
+        })
+        .then(function(post) {
+          expect(post).to.be.null;
         });
     });
   });
